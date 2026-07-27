@@ -22,7 +22,6 @@
             --border-color: #bcccdc;
             --track-bg: #f8fafc;
             --contact-bg: #f0f4f8;
-            --genre-bg: #d9e2ec;
             --btn-action-bg: #334e68;
             --btn-action-hover: #243b53;
         }
@@ -42,7 +41,6 @@
             --border-color: #334e68;
             --track-bg: #102a43;
             --contact-bg: #102a43;
-            --genre-bg: #243b53;
             --btn-action-bg: #486581;
             --btn-action-hover: #627d98;
         }
@@ -169,20 +167,13 @@
         .track-main {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            justify-content: space-between;
-        }
-
-        .track-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
         }
 
         .track-artwork {
-            width: 55px;
-            height: 55px;
-            border-radius: 8px;
+            width: 75px;
+            height: 75px;
+            border-radius: 10px;
             overflow: hidden;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -198,27 +189,18 @@
         .track-meta {
             display: flex;
             flex-direction: column;
-            gap: 0.2rem;
+            gap: 0.25rem;
         }
 
         .track-title {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-primary);
         }
 
         .track-artist {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-        }
-
-        .track-genre {
-            font-size: 0.85rem;
-            background: var(--genre-bg);
-            color: var(--accent-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-weight: 500;
         }
 
         audio {
@@ -377,14 +359,6 @@
             .content {
                 padding: 1.5rem 1rem;
             }
-            .track-main {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.75rem;
-            }
-            .track-genre {
-                align-self: flex-start;
-            }
         }
     </style>
 </head>
@@ -419,16 +393,13 @@
                     <!-- Track 1 -->
                     <div class="track-card">
                         <div class="track-main">
-                            <div class="track-left">
-                                <div class="track-artwork">
-                                    <img src="zoom.jpeg" alt="Uliko Weka Artwork">
-                                </div>
-                                <div class="track-meta">
-                                    <span class="track-title">Uliko Weka</span>
-                                    <span class="track-artist">Man Vid</span>
-                                </div>
+                            <div class="track-artwork">
+                                <img src="zoom.jpeg" alt="Uliko Weka Artwork">
                             </div>
-                            <span class="track-genre">Man Vid</span>
+                            <div class="track-meta">
+                                <span class="track-title">Uliko Weka</span>
+                                <span class="track-artist">Man Vid</span>
+                            </div>
                         </div>
                         <audio preload="none">
                             <source src="Uliko Weka.mp3" type="audio/mpeg">
@@ -449,16 +420,13 @@
                     <!-- Track 2 -->
                     <div class="track-card">
                         <div class="track-main">
-                            <div class="track-left">
-                                <div class="track-artwork">
-                                    <img src="zoom.jpeg" alt="For Settle Artwork">
-                                </div>
-                                <div class="track-meta">
-                                    <span class="track-title">For Settle</span>
-                                    <span class="track-artist">Man Vid</span>
-                                </div>
+                            <div class="track-artwork">
+                                <img src="zoom.jpeg" alt="For Settle Artwork">
                             </div>
-                            <span class="track-genre">Man Vid</span>
+                            <div class="track-meta">
+                                <span class="track-title">For Settle</span>
+                                <span class="track-artist">Man Vid</span>
+                            </div>
                         </div>
                         <audio preload="none">
                             <source src="Settle.mp3" type="audio/mpeg">
@@ -479,16 +447,13 @@
                     <!-- Track 3 -->
                     <div class="track-card">
                         <div class="track-main">
-                            <div class="track-left">
-                                <div class="track-artwork">
-                                    <img src="zoom.jpeg" alt="Good Life Artwork">
-                                </div>
-                                <div class="track-meta">
-                                    <span class="track-title">Good Life</span>
-                                    <span class="track-artist">Man Vid</span>
-                                </div>
+                            <div class="track-artwork">
+                                <img src="zoom.jpeg" alt="Good Life Artwork">
                             </div>
-                            <span class="track-genre">Man Vid</span>
+                            <div class="track-meta">
+                                <span class="track-title">Good Life</span>
+                                <span class="track-artist">Man Vid</span>
+                            </div>
                         </div>
                         <audio preload="none">
                             <source src="Good Life.mp3" type="audio/mpeg">
@@ -509,16 +474,13 @@
                     <!-- Track 4 -->
                     <div class="track-card">
                         <div class="track-main">
-                            <div class="track-left">
-                                <div class="track-artwork">
-                                    <img src="zoom.jpeg" alt="Good Life Artwork">
-                                </div>
-                                <div class="track-meta">
-                                    <span class="track-title">Good Life</span>
-                                    <span class="track-artist">Man Vid</span>
-                                </div>
+                            <div class="track-artwork">
+                                <img src="zoom.jpeg" alt="Good Life Artwork">
                             </div>
-                            <span class="track-genre">Man Vid</span>
+                            <div class="track-meta">
+                                <span class="track-title">Good Life</span>
+                                <span class="track-artist">Man Vid</span>
+                            </div>
                         </div>
                         <audio preload="none">
                             <source src="Good Life.mp3" type="audio/mpeg">
@@ -539,16 +501,13 @@
                     <!-- Track 5 -->
                     <div class="track-card">
                         <div class="track-main">
-                            <div class="track-left">
-                                <div class="track-artwork">
-                                    <img src="zoom.jpeg" alt="For Settle Artwork">
-                                </div>
-                                <div class="track-meta">
-                                    <span class="track-title">For Settle</span>
-                                    <span class="track-artist">Man Vid</span>
-                                </div>
+                            <div class="track-artwork">
+                                <img src="zoom.jpeg" alt="For Settle Artwork">
                             </div>
-                            <span class="track-genre">Man Vid</span>
+                            <div class="track-meta">
+                                <span class="track-title">For Settle</span>
+                                <span class="track-artist">Man Vid</span>
+                            </div>
                         </div>
                         <audio preload="none">
                             <source src="For Settle.mp3" type="audio/mpeg">
