@@ -89,6 +89,47 @@
             gap: 1rem;
         }
 
+        /* Search Bar Styling */
+        .search-container {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+            transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-input::placeholder {
+            color: #bcccdc;
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            fill: #bcccdc;
+            pointer-events: none;
+        }
+
         .default-logo {
             width: 80px;
             height: 80px;
@@ -379,6 +420,14 @@
     <div class="container">
         <!-- Header Banner -->
         <header>
+            <!-- Search Engine Bar (Moved above the photo) -->
+            <div class="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <input type="text" id="trackSearch" class="search-input" placeholder="Search tracks or artists..." onkeyup="filterTracks()">
+            </div>
+            
             <div class="default-logo">
                 <img src="zoom.jpeg" alt="Man Vid Music Logo">
             </div>
@@ -401,7 +450,7 @@
             <section>
                 <h2 class="section-title">Track List</h2>
                 
-                <div class="track-list">
+                <div class="track-list" id="trackList">
                     <!-- Track 1 -->
                     <div class="track-card">
                         <div class="track-main">
@@ -601,6 +650,23 @@
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // Search/Filter Functionality
+        function filterTracks() {
+            const input = document.getElementById('trackSearch').value.toLowerCase();
+            const trackCards = document.querySelectorAll('.track-card');
+
+            trackCards.forEach(card => {
+                const title = card.querySelector('.track-title').textContent.toLowerCase();
+                const artist = card.querySelector('.track-artist').textContent.toLowerCase();
+
+                if (title.includes(input) || artist.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
 
         // Play/Pause Control Functionality
         function togglePlay(button) {
