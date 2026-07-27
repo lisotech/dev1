@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Admin Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #121212; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { background: #1e1e1e; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); width: 300px; text-align: center; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #333; background: #252525; color: white; border-radius: 4px; }
+        button { width: 97%; padding: 10px; background: #1db954; border: none; color: white; font-weight: bold; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #1ed760; }
+        .error { color: #ff5555; font-size: 14px; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h2>Music Admin</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkLogin()">Login</button>
+    <div class="error" id="error-msg">Invalid credentials!</div>
+</div>
+
+<script>
+    function checkLogin() {
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+
+        // Default admin details
+        const defaultUser = "admin";
+        const defaultPass = "musicPass2026";
+
+        if (user === defaultUser && pass === defaultPass) {
+            // Set a session token so the dashboard knows you logged in
+            sessionStorage.setItem("adminLoggedIn", "true");
+            // Redirect to the dashboard
+            window.location.href = "admin-dashboard.html";
+        } else {
+            document.getElementById('error-msg').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
