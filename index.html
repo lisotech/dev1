@@ -89,22 +89,22 @@
             gap: 1rem;
         }
 
-        /* Search Bar Styling */
+        /* Search Bar Styling (Reduced size) */
         .search-container {
             width: 100%;
-            max-width: 450px;
-            margin-bottom: 0.5rem;
+            max-width: 260px;
+            margin-bottom: 0.25rem;
             position: relative;
         }
 
         .search-input {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.75rem;
-            border-radius: 30px;
+            padding: 0.45rem 0.8rem 0.45rem 2.2rem;
+            border-radius: 20px;
             border: 1px solid var(--border-color);
             background: rgba(255, 255, 255, 0.15);
             color: #ffffff;
-            font-size: 1rem;
+            font-size: 0.85rem;
             outline: none;
             transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
         }
@@ -116,16 +116,16 @@
         .search-input:focus {
             background: rgba(255, 255, 255, 0.25);
             border-color: #ffffff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
         }
 
         .search-icon {
             position: absolute;
-            left: 1rem;
+            left: 0.8rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             fill: #bcccdc;
             pointer-events: none;
         }
@@ -420,12 +420,12 @@
     <div class="container">
         <!-- Header Banner -->
         <header>
-            <!-- Search Engine Bar (Moved above the photo) -->
+            <!-- Search Engine Bar (Moved above the photo and reduced in size) -->
             <div class="search-container">
                 <svg class="search-icon" viewBox="0 0 24 24">
                     <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                 </svg>
-                <input type="text" id="trackSearch" class="search-input" placeholder="Search tracks or artists..." onkeyup="filterTracks()">
+                <input type="text" id="trackSearch" class="search-input" placeholder="Search tracks..." onkeyup="filterTracks()">
             </div>
             
             <div class="default-logo">
@@ -436,15 +436,6 @@
                 <p>Music that speaks to the human</p>
             </div>
         </header>
-
-        <!-- Main Content Area -->
-        <div class="content">
-            
-            <!-- Biography -->
-            <section class="bio">
-                <h2 class="section-title">About the Artist</h2>
-                <p>Welcome to the official portfolio of Man Vid Music. Crafting immersive sonic landscapes, driving rhythms, and genre-bending audio experiences. Explore the latest sample tracks below and stay tuned for upcoming releases and collaborations.</p>
-            </section>
 
             <!-- Audio Samples Playlist -->
             <section>
@@ -586,6 +577,14 @@
                         </div>
                     </div>
                 </div>
+            </section>
+
+      <!-- Main Content Area -->
+        <div class="content">
+            <!-- Biography -->
+            <section class="bio">
+                <h2 class="section-title">About the Artist</h2>
+                <p>Welcome to the official portfolio of Man Vid Music. Crafting immersive sonic landscapes, driving rhythms, and genre-bending audio experiences. Explore the latest sample tracks below and stay tuned for upcoming releases and collaborations.</p>
             </section>
 
             <!-- Booking / Contact Section -->
