@@ -88,6 +88,8 @@
             top: 1.5rem;
             right: 1.5rem;
             z-index: 10;
+            display: flex;
+            gap: 0.5rem;
         }
 
         .btn-admin-access {
@@ -164,7 +166,25 @@
             padding-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .admin-controls-header {
+            display: none;
+            gap: 0.5rem;
+        }
+
+        .btn-mini {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        .btn-mini:hover {
+            background: var(--accent-hover);
         }
 
         /* Bio */
@@ -503,10 +523,10 @@
 
     <div class="container">
         <!-- Admin Access Button -->
-        <div class="admin-trigger-container">
+        <div class="admin-trigger-container" id="adminTriggerWrapper">
             <button class="btn-admin-access" onclick="openAdminModal()">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                Admin Panel
+                <span id="adminBtnText">Admin Login</span>
             </button>
         </div>
 
@@ -532,7 +552,13 @@
 
             <!-- Audio Samples Playlist -->
             <section>
-                <h2 class="section-title">Track List</h2>
+                <div class="section-title">
+                    <span>Track List</span>
+                    <div class="admin-controls-header" id="adminHeaderControls">
+                        <button class="btn-mini" onclick="openUploadModal()">+ Upload Song</button>
+                        <button class="btn-mini btn-delete" onclick="handleLogout()">Logout</button>
+                    </div>
+                </div>
                 
                 <div class="track-list" id="trackListContainer">
                     <!-- Tracks dynamically injected via JS -->
@@ -648,11 +674,23 @@
             localStorage.setItem('manvid_tracks', JSON.stringify(tracks));
         }
 
-        // Render Tracks to Playlist DOM
+        // Render Tracks to Playlist DOM & Update Admin UI state
         function renderTracks() {
             const container = document.getElementById('trackListContainer');
             const tracks = getStoredTracks();
             const isAdminLoggedIn = sessionStorage.getItem('manvid_admin_auth') === 'true';
+
+            // Toggle Header UI Elements for Admin
+            const adminHeaderControls = document.getElementById('adminHeaderControls');
+            const adminBtnText = document.getElementById('adminBtnText');
+
+            if (isAdminLoggedIn) {
+                adminHeaderControls.style.display = 'flex';
+                adminBtnText.textContent = 'Upload Panel';
+            } else {
+                adminHeaderControls.style.display = 'none';
+                adminBtnText.textContent = 'Admin Login';
+            }
 
             container.innerHTML = '';
 
@@ -715,7 +753,7 @@
             });
 
             if (audio.paused) {
-                audio.play().catch(e => alert("Could not play audio file. Make sure the file path/source exists."));
+                audio.play().catch(e => alert("Could not play audio file. Ensure valid file or format."));
                 playText.textContent = 'Pause';
                 playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
             } else {
@@ -734,10 +772,14 @@
         function openAdminModal() {
             const isAuth = sessionStorage.getItem('manvid_admin_auth') === 'true';
             if (isAuth) {
-                document.getElementById('uploadModal').style.display = 'flex';
+                openUploadModal();
             } else {
                 document.getElementById('loginModal').style.display = 'flex';
             }
+        }
+
+        function openUploadModal() {
+            document.getElementById('uploadModal').style.display = 'flex';
         }
 
         function closeModals() {
@@ -746,27 +788,34 @@
             document.getElementById('loginError').style.display = 'none';
         }
 
-        // Handle Login Submission
+        // Handle Login Submission with Credentials
         function handleLogin(e) {
             e.preventDefault();
             const user = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value.trim();
 
-            if (user === 'admin' && pass === 'Manvid.p') {
+            if (user === 'admin' && pass === 'Manvid.p') {[cite: 1]
                 sessionStorage.setItem('manvid_admin_auth', 'true');
                 closeModals();
                 renderTracks();
-                document.getElementById('uploadModal').style.display = 'flex';
+                openUploadModal();
             } else {
                 document.getElementById('loginError').style.display = 'block';
+            }
+        }
+
+        function handleLogout() {
+            if (confirm("Are you sure you want to log out of the admin panel?")) {
+                sessionStorage.removeItem('manvid_admin_auth');
+                renderTracks();
             }
         }
 
         // Handle File Upload & Storage Process
         function handleUpload(e) {
             e.preventDefault();
-            const title = document.getElementById('trackTitleInput').value;
-            const artist = document.getElementById('trackArtistInput').value;
+            const titleInput = document.getElementById('trackTitleInput');
+            const artistInput = document.getElementById('trackArtistInput');
             const audioFile = document.getElementById('trackAudioFile').files[0];
             const artFile = document.getElementById('trackArtFile').files[0];
 
@@ -779,11 +828,11 @@
                 if (artFile) {
                     const artReader = new FileReader();
                     artReader.onload = function(artEvent) {
-                        saveNewTrackData(title, artist, audioBase64, artEvent.target.result);
+                        saveNewTrackData(titleInput.value, artistInput.value, audioBase64, artEvent.target.result);
                     };
                     artReader.readAsDataURL(artFile);
                 } else {
-                    saveNewTrackData(title, artist, audioBase64, 'zoom.jpeg');
+                    saveNewTrackData(titleInput.value, artistInput.value, audioBase64, 'zoom.jpeg');
                 }
             };
             audioReader.readAsDataURL(audioFile);
