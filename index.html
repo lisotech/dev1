@@ -24,6 +24,8 @@
             --contact-bg: #f0f4f8;
             --audio-panel: #f0f4f8;
             --genre-bg: #d9e2ec;
+            --btn-action-bg: #334e68;
+            --btn-action-hover: #243b53;
         }
 
         [data-theme="dark"] {
@@ -43,6 +45,8 @@
             --contact-bg: #102a43;
             --audio-panel: #243b53;
             --genre-bg: #243b53;
+            --btn-action-bg: #486581;
+            --btn-action-hover: #627d98;
         }
 
         * {
@@ -189,11 +193,42 @@
             width: 100%;
             height: 40px;
             outline: none;
+            display: none; /* Hidden because we are using custom play/download buttons */
         }
 
-        audio::-webkit-media-controls-panel {
-            background-color: var(--audio-panel);
-            border-radius: 8px;
+        /* Track Action Controls (Play & Download) */
+        .track-controls {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: 0.25rem;
+        }
+
+        .btn-track {
+            background: var(--btn-action-bg);
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-track:hover {
+            background: var(--btn-action-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-track svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
         }
 
         /* Contact / Booking Section */
@@ -260,7 +295,7 @@
             background: var(--call-hover);
         }
 
-        /* Floating Theme Toggle Button (Centered Right, Small Size) */
+        /* Floating Theme Toggle Button */
         .theme-toggle-btn {
             position: fixed;
             top: 50%;
@@ -292,7 +327,6 @@
             fill: currentColor;
         }
 
-        /* Hide/Show icons based on active theme */
         .sun-icon { display: none; }
         .moon-icon { display: block; }
 
@@ -357,10 +391,20 @@
                             <span class="track-title">Uliko Weka</span>
                             <span class="track-genre">Man Vid</span>
                         </div>
-                        <audio controls preload="none">
+                        <audio preload="none">
                             <source src="Uliko Weka.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+                        <div class="track-controls">
+                            <button class="btn-track play-btn" onclick="togglePlay(this)">
+                                <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                <span class="play-text">Play</span>
+                            </button>
+                            <a href="Uliko Weka.mp3" class="btn-track" download>
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                Download
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Track 2 -->
@@ -369,10 +413,20 @@
                             <span class="track-title">For Settle</span>
                             <span class="track-genre">Man Vid</span>
                         </div>
-                        <audio controls preload="none">
+                        <audio preload="none">
                             <source src="Settle.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+                        <div class="track-controls">
+                            <button class="btn-track play-btn" onclick="togglePlay(this)">
+                                <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                <span class="play-text">Play</span>
+                            </button>
+                            <a href="Settle.mp3" class="btn-track" download>
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                Download
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Track 3 -->
@@ -381,10 +435,20 @@
                             <span class="track-title">Good Life</span>
                             <span class="track-genre">Man Vid</span>
                         </div>
-                        <audio controls preload="none">
+                        <audio preload="none">
                             <source src="Good Life.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+                        <div class="track-controls">
+                            <button class="btn-track play-btn" onclick="togglePlay(this)">
+                                <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                <span class="play-text">Play</span>
+                            </button>
+                            <a href="Good Life.mp3" class="btn-track" download>
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                Download
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Track 4 -->
@@ -393,10 +457,20 @@
                             <span class="track-title">Good Life</span>
                             <span class="track-genre">Man Vid</span>
                         </div>
-                        <audio controls preload="none">
+                        <audio preload="none">
                             <source src="Good Life.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+                        <div class="track-controls">
+                            <button class="btn-track play-btn" onclick="togglePlay(this)">
+                                <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                <span class="play-text">Play</span>
+                            </button>
+                            <a href="Good Life.mp3" class="btn-track" download>
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                Download
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Track 5 -->
@@ -405,10 +479,20 @@
                             <span class="track-title">For Settle</span>
                             <span class="track-genre">Man Vid</span>
                         </div>
-                        <audio controls preload="none">
+                        <audio preload="none">
                             <source src="For Settle.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+                        <div class="track-controls">
+                            <button class="btn-track play-btn" onclick="togglePlay(this)">
+                                <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                <span class="play-text">Play</span>
+                            </button>
+                            <a href="For Settle.mp3" class="btn-track" download>
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                Download
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -438,7 +522,6 @@
         <!-- Footer -->
         <footer>
             <p>&copy; Man Vid Music. All Rights Reserved.</p>
-            .
             <marquee> Designed @Lisotech Innovations. Call or WhatsApp +260974101130 </marquee>
         </footer>
     </div>
@@ -470,6 +553,43 @@
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // Play/Pause Control Functionality
+        function togglePlay(button) {
+            const card = button.closest('.track-card');
+            const audio = card.querySelector('audio');
+            const playText = button.querySelector('.play-text');
+            const playIcon = button.querySelector('.play-icon');
+
+            // Pause all other playing audios
+            document.querySelectorAll('audio').forEach(item => {
+                if (item !== audio) {
+                    item.pause();
+                    item.currentTime = 0;
+                    const otherCard = item.closest('.track-card');
+                    const otherBtnText = otherCard.querySelector('.play-text');
+                    const otherBtnIcon = otherCard.querySelector('.play-icon');
+                    otherBtnText.textContent = 'Play';
+                    otherBtnIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+                }
+            });
+
+            if (audio.paused) {
+                audio.play();
+                playText.textContent = 'Pause';
+                playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'; // Pause icon SVG
+            } else {
+                audio.pause();
+                playText.textContent = 'Play';
+                playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; // Play icon SVG
+            }
+
+            // Reset button text when audio naturally ends
+            audio.onended = () => {
+                playText.textContent = 'Play';
+                playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+            };
+        }
     </script>
 </body>
 </html>
