@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Man Vid Music | Official Artist Portfolio</title>
-    <!-- Favicon / Web Title Logo -->
     <link rel="icon" type="image/png" href="zoom.jpeg">
     <style>
         :root {
@@ -82,7 +81,6 @@
             position: relative;
         }
 
-        /* Admin Trigger Button Top-Right */
         .admin-trigger-container {
             position: absolute;
             top: 1.5rem;
@@ -110,7 +108,6 @@
             background: rgba(255, 255, 255, 0.35);
         }
 
-        /* Header Section */
         header {
             background: linear-gradient(135deg, #243b53 100%, #102a43 0%);
             color: #ffffff;
@@ -153,7 +150,6 @@
             font-weight: 300;
         }
 
-        /* Main Content Section */
         .content {
             padding: 2.5rem 2rem;
         }
@@ -187,7 +183,6 @@
             background: var(--accent-hover);
         }
 
-        /* Bio */
         .bio {
             margin-bottom: 2.5rem;
             line-height: 1.7;
@@ -195,7 +190,6 @@
             font-size: 1.05rem;
         }
 
-        /* Playlist / Audio Tracks */
         .track-list {
             display: flex;
             flex-direction: column;
@@ -269,7 +263,6 @@
             display: none;
         }
 
-        /* Track Action Controls (Play & Download) */
         .track-controls {
             display: flex;
             gap: 0.75rem;
@@ -317,7 +310,6 @@
             background: var(--danger-hover);
         }
 
-        /* Modal Overlay Styles */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -412,7 +404,6 @@
             display: none;
         }
 
-        /* Contact / Booking Section */
         .contact-section {
             background: var(--contact-bg);
             padding: 1.75rem 1.5rem;
@@ -467,7 +458,6 @@
         .btn-call { background: var(--call-color); }
         .btn-call:hover { background: var(--call-hover); }
 
-        /* Floating Theme Toggle Button */
         .theme-toggle-btn {
             position: fixed;
             top: 50%;
@@ -504,7 +494,6 @@
         [data-theme="dark"] .sun-icon { display: block; }
         [data-theme="dark"] .moon-icon { display: none; }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -522,15 +511,13 @@
 <body>
 
     <div class="container">
-        <!-- Admin Access Button -->
         <div class="admin-trigger-container" id="adminTriggerWrapper">
             <button class="btn-admin-access" onclick="openAdminModal()">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                <span id="adminBtnText">Admin Login</span>
+                <span id="adminBtnText">Admin Panel</span>
             </button>
         </div>
 
-        <!-- Header Banner -->
         <header>
             <div class="default-logo">
                 <img src="zoom.jpeg" alt="Man Vid Music Logo">
@@ -541,16 +528,12 @@
             </div>
         </header>
 
-        <!-- Main Content Area -->
         <div class="content">
-            
-            <!-- Biography -->
             <section class="bio">
                 <h2 class="section-title">About the Artist</h2>
                 <p>Welcome to the official portfolio of Man Vid Music. Crafting immersive sonic landscapes, driving rhythms, and genre-bending audio experiences. Explore the latest sample tracks below and stay tuned for upcoming releases and collaborations.</p>
             </section>
 
-            <!-- Audio Samples Playlist -->
             <section>
                 <div class="section-title">
                     <span>Track List</span>
@@ -561,11 +544,10 @@
                 </div>
                 
                 <div class="track-list" id="trackListContainer">
-                    <!-- Tracks dynamically injected via JS -->
+                    <!-- Dynamic tracks loaded here -->
                 </div>
             </section>
 
-            <!-- Booking / Contact Section -->
             <section class="contact-section">
                 <h3>Bookings & Collaborations</h3>
                 <p>Interested in working together? Reach out directly.</p>
@@ -631,19 +613,17 @@
                     <label for="trackArtFile">Artwork Image (Optional)</label>
                     <input type="file" id="trackArtFile" accept="image/*">
                 </div>
-                <button type="submit" class="btn-submit" style="margin-top: 1rem;">Upload Song</button>
+                <button type="submit" class="btn-submit" id="uploadSubmitBtn" style="margin-top: 1rem;">Upload Song</button>
             </form>
         </div>
     </div>
 
-    <!-- Floating Theme Toggle Button -->
     <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Theme">
         <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36l-1.06 1.06c-.39.39-.39 1.03 0 1.41.39.39 1.03.39 1.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0z"/></svg>
         <svg class="moon-icon" viewBox="0 0 24 24"><path d="M12.3 2c-5.52 0-10 4.48-10 10 0 4.54 3.08 8.35 7.27 9.43.34.09.52-.29.3-.57-.96-1.25-1.57-2.82-1.57-4.53 0-4.14 3.36-7.5 7.5-7.5 1.71 0 3.28.61 4.53 1.57.28.22.66.04.57-.3C20.65 5.08 16.84 2 12.3 2z"/></svg>
     </button>
 
     <script>
-        // Theme Toggle Setup
         const themeToggle = document.getElementById('themeToggle');
         const htmlElement = document.documentElement;
         const currentTheme = localStorage.getItem('theme') || 'light';
@@ -656,13 +636,10 @@
             localStorage.setItem('theme', newTheme);
         });
 
-        // Default initial tracks if none stored yet
         const defaultTracks = [
             { id: 1, title: "Uliko Weka", artist: "Man Vid", src: "Uliko Weka.mp3", art: "zoom.jpeg" },
             { id: 2, title: "For Settle", artist: "Man Vid", src: "Settle.mp3", art: "zoom.jpeg" },
-            { id: 3, title: "Good Life", artist: "Man Vid", src: "Good Life.mp3", art: "zoom.jpeg" },
-            { id: 4, title: "Good Life", artist: "Man Vid", src: "Good Life.mp3", art: "zoom.jpeg" },
-            { id: 5, title: "For Settle", artist: "Man Vid", src: "For Settle.mp3", art: "zoom.jpeg" }
+            { id: 3, title: "Good Life", artist: "Man Vid", src: "Good Life.mp3", art: "zoom.jpeg" }
         ];
 
         function getStoredTracks() {
@@ -674,13 +651,11 @@
             localStorage.setItem('manvid_tracks', JSON.stringify(tracks));
         }
 
-        // Render Tracks to Playlist DOM & Update Admin UI state
         function renderTracks() {
             const container = document.getElementById('trackListContainer');
             const tracks = getStoredTracks();
             const isAdminLoggedIn = sessionStorage.getItem('manvid_admin_auth') === 'true';
 
-            // Toggle Header UI Elements for Admin
             const adminHeaderControls = document.getElementById('adminHeaderControls');
             const adminBtnText = document.getElementById('adminBtnText');
 
@@ -689,7 +664,7 @@
                 adminBtnText.textContent = 'Upload Panel';
             } else {
                 adminHeaderControls.style.display = 'none';
-                adminBtnText.textContent = 'Admin Login';
+                adminBtnText.textContent = 'Admin Panel';
             }
 
             container.innerHTML = '';
@@ -719,7 +694,7 @@
                                 <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                 <span class="play-text">Play</span>
                             </button>
-                            <a href="${track.src}" class="btn-track" download>
+                            <a href="${track.src}" class="btn-track" download="${track.title}.mp3">
                                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                                 Download
                             </a>
@@ -731,7 +706,6 @@
             });
         }
 
-        // Play/Pause Audio Handler
         function togglePlay(button) {
             const card = button.closest('.track-card');
             const audio = card.querySelector('audio');
@@ -753,7 +727,7 @@
             });
 
             if (audio.paused) {
-                audio.play().catch(e => alert("Could not play audio file. Ensure valid file or format."));
+                audio.play().catch(e => alert("Could not play audio file. Verify file source path."));
                 playText.textContent = 'Pause';
                 playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
             } else {
@@ -768,7 +742,6 @@
             };
         }
 
-        // Modal Controls
         function openAdminModal() {
             const isAuth = sessionStorage.getItem('manvid_admin_auth') === 'true';
             if (isAuth) {
@@ -788,38 +761,41 @@
             document.getElementById('loginError').style.display = 'none';
         }
 
-        // Handle Login Submission with Credentials
         function handleLogin(e) {
             e.preventDefault();
             const user = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value.trim();
 
-            if (user === 'admin' && pass === 'Manvid.p') {[cite: 1]
+            if (user === 'admin' && pass === 'Manvid.p') {
                 sessionStorage.setItem('manvid_admin_auth', 'true');
                 closeModals();
                 renderTracks();
                 openUploadModal();
+                document.getElementById('loginForm').reset();
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
         }
 
         function handleLogout() {
-            if (confirm("Are you sure you want to log out of the admin panel?")) {
+            if (confirm("Are you sure you want to log out?")) {
                 sessionStorage.removeItem('manvid_admin_auth');
                 renderTracks();
             }
         }
 
-        // Handle File Upload & Storage Process
         function handleUpload(e) {
             e.preventDefault();
+            const submitBtn = document.getElementById('uploadSubmitBtn');
             const titleInput = document.getElementById('trackTitleInput');
             const artistInput = document.getElementById('trackArtistInput');
             const audioFile = document.getElementById('trackAudioFile').files[0];
             const artFile = document.getElementById('trackArtFile').files[0];
 
             if (!audioFile) return;
+
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
 
             const audioReader = new FileReader();
             audioReader.onload = function(audioEvent) {
@@ -829,13 +805,20 @@
                     const artReader = new FileReader();
                     artReader.onload = function(artEvent) {
                         saveNewTrackData(titleInput.value, artistInput.value, audioBase64, artEvent.target.result);
+                        resetUploadButton(submitBtn);
                     };
                     artReader.readAsDataURL(artFile);
                 } else {
                     saveNewTrackData(titleInput.value, artistInput.value, audioBase64, 'zoom.jpeg');
+                    resetUploadButton(submitBtn);
                 }
             };
             audioReader.readAsDataURL(audioFile);
+        }
+
+        function resetUploadButton(btn) {
+            btn.textContent = 'Upload Song';
+            btn.disabled = false;
         }
 
         function saveNewTrackData(title, artist, audioSrc, artSrc) {
@@ -847,14 +830,18 @@
                 src: audioSrc,
                 art: artSrc
             });
-            saveStoredTracks(tracks);
-            renderTracks();
-            closeModals();
-            document.getElementById('uploadForm').reset();
-            alert('Track successfully uploaded and added to the portfolio!');
+            
+            try {
+                saveStoredTracks(tracks);
+                renderTracks();
+                closeModals();
+                document.getElementById('uploadForm').reset();
+                alert('Track uploaded successfully!');
+            } catch (err) {
+                alert('Storage limit reached! Try using a smaller audio file size.');
+            }
         }
 
-        // Delete track function for Admin
         function deleteTrack(index) {
             if (confirm('Are you sure you want to delete this track?')) {
                 const tracks = getStoredTracks();
@@ -864,7 +851,6 @@
             }
         }
 
-        // Initial Load
         window.addEventListener('DOMContentLoaded', () => {
             renderTracks();
         });
